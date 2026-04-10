@@ -9,7 +9,7 @@ export default function SectionField ({label, type, mode}) {
         :<input value={value} type={type} onChange={(e)=>setValue(e.target.value)} />
 
     const output = (type == "textarea")
-        ?value.split("\n").map(line => <><br />{line}</>)
+        ?value.split("\n").map((line, index) => (index>0)?<><br />{line}</>:<>{line}</>)
         :<>{value}</>;
 
     if (mode == "edit") {
@@ -23,7 +23,7 @@ export default function SectionField ({label, type, mode}) {
     else {
         return (
             <>
-                <p>{label}</p> <p>{output}</p>
+                <p>{label}</p> <p className="inputDisplay">{output}</p>
             </>
         );
     }
